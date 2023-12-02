@@ -11,5 +11,5 @@ export function getUrl(token: string): string | undefined {
 }
 
 function generateToken(): string {
-  return Math.random().toString(36).slice(2, 7);
+  return Math.random().toString(36).slice(2, 7)
 }
