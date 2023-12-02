@@ -2,9 +2,10 @@ import bodyParser from 'body-parser';
 import express, { Request, Response } from 'express'
 import { engine } from 'express-handlebars';
 import { createUrl, getUrl } from './service';
+import 'dotenv/config';
 
-const port = 3000;
-const basePath = 'http://localhost:3000/'
+const port = process.env.PORT || 3000;
+const basePath = process.env.BASE_PATH || 'http://localhost:3000/'
 
 const app = express();
 
