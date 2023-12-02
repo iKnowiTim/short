@@ -1,0 +1,26 @@
+name: Test
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  test:
+    uses: ./.github/workflows/test.yml
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [test]
+    steps:
+      - name: deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{secrets.HOST}}
+          username: ${{secrets.USERNAME}}
+          key: ${{secrets.KEY}}
+          script_stop: true
+          script: cd /root/short
+            git checkout master
+            git pull -f origin master
+            yarn
+            yarn build
+            pm2 restart 0
