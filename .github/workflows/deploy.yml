@@ -18,9 +18,10 @@ jobs:
           username: ${{secrets.USERNAME}}
           key: ${{secrets.KEY}}
           script_stop: true
-          script: '| cd /root/short
+          script: |
+            cd /root/short
             git checkout master
             git pull -f origin master
             yarn
             yarn build
-            pm2 restart 0'
+            pm2 restart 0
